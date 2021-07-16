@@ -1,0 +1,73 @@
+<label for="canvas1">Canvas1</label>
+<canvas id="canvas1" width="300" height="300"></canvas>
+
+<label for="canvas2">canvas2</label>
+<canvas id="canvas2" width="300" height="300"></canvas>
+
+<script type="text/javascript">
+  var canvas1 = document.getElementById("canvas1")
+  var canvas2 = document.getElementById('canvas2')
+
+
+  //canvas event listeners toevoegen
+  canvas1.addEventListener("mousedown", onDown, false)
+  canvas1.addEventListener("mouseup", onUp, false)
+  canvas1.addEventListener("mousemove", onMove, false)
+
+  canvas2.addEventListener("mousedown", onDown, false)
+  canvas2.addEventListener("mouseup", onUp, false)
+  canvas2.addEventListener("mousemove", onMove, false)
+
+  //array met canvas om te tekenen
+  var drawing = []
+
+  //Event voor indrukken canvas
+  function onDown(e) {
+    var ctx = e.path[0].getContext('2d')
+
+    //Voeg canvas toe om te tekenen
+    drawing.push(e.path[0].id)
+
+    //Teken
+    ctx.beginPath()
+    ctx.moveTo(e.offsetX,e.offsetY)
+  }
+
+  function onUp(e) {
+    var ctx = e.path[0].getContext('2d')
+    //teken laatste lijn en stop met tekene
+    ctx.stroke()
+    ctx.closePath()
+
+    //verwijder van tekenlijst
+    var index = drawing.indexOf(e.path[0].id)
+    drawing.splice(index, 1)
+  }
+
+  function onMove(e) {
+    //Zoek of iets word getekend
+    if(drawing.includes(e.path[0].id)) {
+      var element = document.getElementById(e.path[0].id)
+      var ctx = element.getContext('2d')
+
+      //teken input
+      ctx.lineTo(e.offsetX,e.offsetY)
+      ctx.stroke()
+    }
+  }
+</script>
+
+<button type="button" name="button" onclick="resetCanvas()">Clear canvases</button>
+
+<script type="text/javascript">
+  function resetCanvas() {
+    var canvas1 = document.getElementById("canvas1")
+    var canvas1Ctx = canvas1.getContext("2d")
+
+    var canvas2 = document.getElementById("canvas2")
+    var canvas2Ctx = canvas2.getContext("2d")
+
+    canvas1Ctx.clearRect(0,0,300,300)
+    canvas2Ctx.clearRect(0,0,300,300)
+  }
+</script>
