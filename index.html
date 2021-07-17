@@ -14,6 +14,17 @@
   canvas1.addEventListener("mouseup", onUp, false)
   canvas1.addEventListener("mousemove", onMove, false)
 
+  canvas1.addEventListener("touchstart", onDown, false)
+  canvas1.addEventListener("touchend", onUp, false)
+  canvas1.addEventListener("touchmove", onMove, false)
+  canvas1.addEventListener("touchcancel", onCancel, false)
+
+  //canvas2
+  canvas2.addEventListener("touchstart", onDown, false)
+  canvas2.addEventListener("touchend", onUp, false)
+  canvas2.addEventListener("touchmove", onMove, false)
+  canvas2.addEventListener("touchcancel", onCancel, false)
+
   canvas2.addEventListener("mousedown", onDown, false)
   canvas2.addEventListener("mouseup", onUp, false)
   canvas2.addEventListener("mousemove", onMove, false)
@@ -55,6 +66,11 @@
       ctx.stroke()
     }
   }
+
+  function onCancel() {
+    drawing = []
+  }
+
 </script>
 
 
