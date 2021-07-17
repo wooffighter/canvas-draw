@@ -35,6 +35,10 @@
 
   //Event voor indrukken canvas
   function onDown(e) {
+    //Stop standaard gedrag (dragging etc)
+    e.preventDefault();
+    e.stopPropagation();
+
     var ctx = e.path[0].getContext('2d')
 
     //Voeg canvas toe om te tekenen
@@ -46,6 +50,12 @@
   }
 
   function onUp(e) {
+
+    //Stop standaard gedrag (dragging etc)
+    e.preventDefault();
+    e.stopPropagation();
+
+
     var ctx = e.path[0].getContext('2d')
     //teken laatste lijn en stop met tekene
     ctx.stroke()
@@ -57,6 +67,12 @@
   }
 
   function onMove(e) {
+
+    //Stop standaard gedrag (dragging etc)
+    e.preventDefault();
+    e.stopPropagation();
+
+
     //Zoek of iets word getekend
     if(drawing.includes(e.path[0].id)) {
       var element = document.getElementById(e.path[0].id)
@@ -69,6 +85,11 @@
   }
 
   function onCancel() {
+    //Stop standaard gedrag (dragging etc)
+    e.preventDefault();
+    e.stopPropagation();
+
+    
     drawing = []
   }
 
