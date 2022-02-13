@@ -23,37 +23,45 @@
   canvas2.addEventListener("mouseup", onUp, false)
   canvas2.addEventListener("mousemove", onMove, false)
 
-  addEventListener("touchstart", , function (e) {
+  addEventListener("touchstart", function (e) {
+    e.preventDefault();
+    e.stopPropagation();
     var touch = e.touches[0]
     var mouseEvent = new MouseEvent("mousedown", {
-      clientX: touch.clientX
+      clientX: touch.clientX,
       clientY: touch.clientY
     });
     dispatchEvent(mouseEvent)
   }, false)
 
-  addEventListener("touchend", , function (e) {
+  addEventListener("touchend", function (e) {
+    e.preventDefault();
+    e.stopPropagation();
     var touch = e.touches[0]
     var mouseEvent = new MouseEvent("mouseup", {
-      clientX: touch.clientX
+      clientX: touch.clientX,
       clientY: touch.clientY
     });
     dispatchEvent(mouseEvent)
   }, false)
 
-  addEventListener("touchmove", , function (e) {
+  addEventListener("touchmove", function (e) {
+    e.preventDefault();
+    e.stopPropagation();
     var touch = e.touches[0]
     var mouseEvent = new MouseEvent("mousemove", {
-      clientX: touch.clientX
+      clientX: touch.clientX,
       clientY: touch.clientY
     });
     dispatchEvent(mouseEvent)
   }, false)
 
-  addEventListener("touchcancel", , function (e) {
+  addEventListener("touchcancel", function (e) {
+    e.preventDefault();
+    e.stopPropagation();
     var touch = e.touches[0]
     var mouseEvent = new MouseEvent("mouseup", {
-      clientX: touch.clientX
+      clientX: touch.clientX,
       clientY: touch.clientY
     });
     dispatchEvent(mouseEvent)
